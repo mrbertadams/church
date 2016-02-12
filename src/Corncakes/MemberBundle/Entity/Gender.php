@@ -19,11 +19,7 @@ class Gender
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-     *
-     * @ORM\OneToMany(targetEntity="Product", mappedBy="gender")
      */
-    protected $persons;
-
     private $id;
 
     /**
@@ -32,6 +28,11 @@ class Gender
      * @ORM\Column(name="name", type="string", length=10, unique=true)
      */
     private $name;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Person", mappedBy="gender")
+     */
+    private $persons;
 
     public function __construct()
     {
@@ -79,5 +80,28 @@ class Gender
     public function getPersons()
     {
         return $this->persons;
+    }
+
+    /**
+     * Add persons
+     *
+     * @param \Corncakes\MemberBundle\Entity\Person $persons
+     * @return Gender
+     */
+    public function addPerson(\Corncakes\MemberBundle\Entity\Person $persons)
+    {
+        $this->persons[] = $persons;
+
+        return $this;
+    }
+
+    /**
+     * Remove persons
+     *
+     * @param \Corncakes\MemberBundle\Entity\Person $persons
+     */
+    public function removePerson(\Corncakes\MemberBundle\Entity\Person $persons)
+    {
+        $this->persons->removeElement($persons);
     }
 }

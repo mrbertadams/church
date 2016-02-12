@@ -18,12 +18,7 @@ class Person
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-     *
-     * @ORM\ManyToOne(targetEntity="Gender", inversedBy="persons")
-     * @ORM\JoinColumn(name="gender_id", referencedColumnName="id")
      */
-    protected $gender;
-
     private $id;
 
     /**
@@ -96,6 +91,10 @@ class Person
      */
     private $updatedAt;
 
+   /**
+    * @ORM\ManyToOne(targetEntity="Gender", inversedBy="persons")
+    */
+    private $gender;
 
     /**
      * Get id
@@ -345,5 +344,18 @@ class Person
     public function getGender()
     {
         return $this->gender;
+    }
+
+    /**
+     * Set gender
+     *
+     * @param \Corncakes\MemberBundle\Entity\Gender $gender
+     * @return Person
+     */
+    public function setGender(\Corncakes\MemberBundle\Entity\Gender $gender = null)
+    {
+        $this->gender = $gender;
+
+        return $this;
     }
 }
