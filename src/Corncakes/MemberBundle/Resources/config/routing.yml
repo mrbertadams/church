@@ -1,0 +1,3 @@
+corncakes_member_homepage:
+    path:     /
+    defaults: { _controller: CorncakesMemberBundle:Default:index }
