@@ -34,6 +34,9 @@ class Gender
      */
     private $persons;
 
+    /**
+     * Gender constructor.
+     */
     public function __construct()
     {
         $this->persons = new ArrayCollection();

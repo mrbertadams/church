@@ -34,6 +34,9 @@ class Gender
      */
     private $persons;
 
+    /**
+     * Gender constructor.
+     */
     public function __construct()
     {
         $this->persons = new ArrayCollection();
@@ -80,5 +83,28 @@ class Gender
     public function getPersons()
     {
         return $this->persons;
+    }
+
+    /**
+     * Add persons
+     *
+     * @param \Corncakes\MemberBundle\Entity\Person $persons
+     * @return Gender
+     */
+    public function addPerson(\Corncakes\MemberBundle\Entity\Person $persons)
+    {
+        $this->persons[] = $persons;
+
+        return $this;
+    }
+
+    /**
+     * Remove persons
+     *
+     * @param \Corncakes\MemberBundle\Entity\Person $persons
+     */
+    public function removePerson(\Corncakes\MemberBundle\Entity\Person $persons)
+    {
+        $this->persons->removeElement($persons);
     }
 }

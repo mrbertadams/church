@@ -2,6 +2,7 @@
 
 namespace Corncakes\MemberBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -95,6 +96,36 @@ class Person
     * @ORM\ManyToOne(targetEntity="Gender", inversedBy="persons")
     */
     private $gender;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Status", inversedBy="persons")
+     */
+    private $status;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Sector", inversedBy="persons")
+     */
+    private $sector;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Assist", mappedBy="person")
+     */
+    private $assists;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Cell", inversedBy="persons")
+     * @ORM\JoinTable(name="persons_cells")
+     */
+    private $cells;
+
+    /**
+     * Person constructor.
+     */
+    public function __construct()
+    {
+        $this->assists  = new ArrayCollection();
+        $this->cells    = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -344,5 +375,130 @@ class Person
     public function getGender()
     {
         return $this->gender;
+    }
+
+    /**
+     * Set gender
+     *
+     * @param \Corncakes\MemberBundle\Entity\Gender $gender
+     * @return Person
+     */
+    public function setGender(\Corncakes\MemberBundle\Entity\Gender $gender = null)
+    {
+        $this->gender = $gender;
+
+        return $this;
+    }
+
+    /**
+     * Set status
+     *
+     * @param \Corncakes\MemberBundle\Entity\Status $status
+     * @return Person
+     */
+    public function setStatus(\Corncakes\MemberBundle\Entity\Status $status = null)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return \Corncakes\MemberBundle\Entity\Status 
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * Set sector
+     *
+     * @param \Corncakes\MemberBundle\Entity\Sector $sector
+     * @return Person
+     */
+    public function setSector(\Corncakes\MemberBundle\Entity\Sector $sector = null)
+    {
+        $this->sector = $sector;
+
+        return $this;
+    }
+
+    /**
+     * Get sector
+     *
+     * @return \Corncakes\MemberBundle\Entity\Sector 
+     */
+    public function getSector()
+    {
+        return $this->sector;
+    }
+
+    /**
+     * Add assists
+     *
+     * @param \Corncakes\MemberBundle\Entity\Assist $assists
+     * @return Person
+     */
+    public function addAssist(\Corncakes\MemberBundle\Entity\Assist $assists)
+    {
+        $this->assists[] = $assists;
+
+        return $this;
+    }
+
+    /**
+     * Remove assists
+     *
+     * @param \Corncakes\MemberBundle\Entity\Assist $assists
+     */
+    public function removeAssist(\Corncakes\MemberBundle\Entity\Assist $assists)
+    {
+        $this->assists->removeElement($assists);
+    }
+
+    /**
+     * Get assists
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getAssists()
+    {
+        return $this->assists;
+    }
+
+    /**
+     * Add cells
+     *
+     * @param \Corncakes\MemberBundle\Entity\Cell $cells
+     * @return Person
+     */
+    public function addCell(\Corncakes\MemberBundle\Entity\Cell $cells)
+    {
+        $this->cells[] = $cells;
+
+        return $this;
+    }
+
+    /**
+     * Remove cells
+     *
+     * @param \Corncakes\MemberBundle\Entity\Cell $cells
+     */
+    public function removeCell(\Corncakes\MemberBundle\Entity\Cell $cells)
+    {
+        $this->cells->removeElement($cells);
+    }
+
+    /**
+     * Get cells
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCells()
+    {
+        return $this->cells;
     }
 }

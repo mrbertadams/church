@@ -42,6 +42,15 @@ class Assist
      */
     private $updatedAt;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Person", inversedBy="assists")
+     */
+    private $person;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AssistType", inversedBy="assists")
+     */
+    private $assistType;
 
     /**
      * Get id
@@ -120,5 +129,51 @@ class Assist
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+
+    /**
+     * Set person
+     *
+     * @param \Corncakes\MemberBundle\Entity\Person $person
+     * @return Assist
+     */
+    public function setPerson(\Corncakes\MemberBundle\Entity\Person $person = null)
+    {
+        $this->person = $person;
+
+        return $this;
+    }
+
+    /**
+     * Get person
+     *
+     * @return \Corncakes\MemberBundle\Entity\Person 
+     */
+    public function getPerson()
+    {
+        return $this->person;
+    }
+
+    /**
+     * Set assistType
+     *
+     * @param \Corncakes\MemberBundle\Entity\AssistType $assistType
+     * @return Assist
+     */
+    public function setAssistType(\Corncakes\MemberBundle\Entity\AssistType $assistType = null)
+    {
+        $this->assistType = $assistType;
+
+        return $this;
+    }
+
+    /**
+     * Get assistType
+     *
+     * @return \Corncakes\MemberBundle\Entity\AssistType 
+     */
+    public function getAssistType()
+    {
+        return $this->assistType;
     }
 }

@@ -70,6 +70,10 @@ class CellControl
      */
     private $updatedAt;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Cell", inversedBy="cellControls")
+     */
+    private $cell;
 
     /**
      * Get id
@@ -240,5 +244,28 @@ class CellControl
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+
+    /**
+     * Set cell
+     *
+     * @param \Corncakes\MemberBundle\Entity\Cell $cell
+     * @return CellControl
+     */
+    public function setCell(\Corncakes\MemberBundle\Entity\Cell $cell = null)
+    {
+        $this->cell = $cell;
+
+        return $this;
+    }
+
+    /**
+     * Get cell
+     *
+     * @return \Corncakes\MemberBundle\Entity\Cell 
+     */
+    public function getCell()
+    {
+        return $this->cell;
     }
 }

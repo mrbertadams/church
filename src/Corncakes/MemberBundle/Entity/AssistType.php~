@@ -2,6 +2,7 @@
 
 namespace Corncakes\MemberBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -28,6 +29,18 @@ class AssistType
      */
     private $name;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Assist", mappedBy="assistType")
+     */
+    private $assists;
+
+    /**
+     * AssistType constructor.
+     */
+    public function __construct()
+    {
+        $this->assists = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -60,5 +73,38 @@ class AssistType
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Add assists
+     *
+     * @param \Corncakes\MemberBundle\Entity\Assist $assists
+     * @return AssistType
+     */
+    public function addAssist(\Corncakes\MemberBundle\Entity\Assist $assists)
+    {
+        $this->assists[] = $assists;
+
+        return $this;
+    }
+
+    /**
+     * Remove assists
+     *
+     * @param \Corncakes\MemberBundle\Entity\Assist $assists
+     */
+    public function removeAssist(\Corncakes\MemberBundle\Entity\Assist $assists)
+    {
+        $this->assists->removeElement($assists);
+    }
+
+    /**
+     * Get assists
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getAssists()
+    {
+        return $this->assists;
     }
 }
