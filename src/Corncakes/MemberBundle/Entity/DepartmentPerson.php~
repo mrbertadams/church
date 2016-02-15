@@ -1,0 +1,53 @@
+<?php
+
+namespace Corncakes\MemberBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * DepartmentPerson
+ *
+ * @ORM\Table(name="department_persons")
+ * @ORM\Entity(repositoryClass="Corncakes\MemberBundle\Repository\DepartmentPersonRepository")
+ */
+class DepartmentPerson
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Person", inversedBy="departmentPersons")
+     */
+    private $person;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Department", inversedBy="departmentPersons")
+     */
+    private $department;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="PersonType", inversedBy="departmentPersons")
+     */
+    private $personType;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Church", inversedBy="departmentPersons")
+     */
+    private $church;
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+}

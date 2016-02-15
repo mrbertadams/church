@@ -2,6 +2,7 @@
 
 namespace Corncakes\MemberBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -42,6 +43,30 @@ class Church
      */
     private $phone;
 
+    /**
+     * @ORM\OneToMany(targetEntity="CellPerson", mappedBy="church")
+     */
+    private $cellPersons;
+
+    /**
+     * @ORM\OneToMany(targetEntity="ChurchPerson", mappedBy="church")
+     */
+    private $churchPersons;
+
+    /**
+     * @ORM\OneToMany(targetEntity="DepartmentPerson", mappedBy="church")
+     */
+    private $departmentPersons;
+
+    /**
+     * Church constructor.
+     */
+    public function __construct()
+    {
+        $this->cellPersons          = new ArrayCollection();
+        $this->churchPersons        = new ArrayCollection();
+        $this->departmentPersons    = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -120,5 +145,104 @@ class Church
     public function getPhone()
     {
         return $this->phone;
+    }
+
+    /**
+     * Add cellPersons
+     *
+     * @param \Corncakes\MemberBundle\Entity\CellPerson $cellPersons
+     * @return Church
+     */
+    public function addCellPerson(\Corncakes\MemberBundle\Entity\CellPerson $cellPersons)
+    {
+        $this->cellPersons[] = $cellPersons;
+
+        return $this;
+    }
+
+    /**
+     * Remove cellPersons
+     *
+     * @param \Corncakes\MemberBundle\Entity\CellPerson $cellPersons
+     */
+    public function removeCellPerson(\Corncakes\MemberBundle\Entity\CellPerson $cellPersons)
+    {
+        $this->cellPersons->removeElement($cellPersons);
+    }
+
+    /**
+     * Get cellPersons
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCellPersons()
+    {
+        return $this->cellPersons;
+    }
+
+    /**
+     * Add churchPersons
+     *
+     * @param \Corncakes\MemberBundle\Entity\ChurchPerson $churchPersons
+     * @return Church
+     */
+    public function addChurchPerson(\Corncakes\MemberBundle\Entity\ChurchPerson $churchPersons)
+    {
+        $this->churchPersons[] = $churchPersons;
+
+        return $this;
+    }
+
+    /**
+     * Remove churchPersons
+     *
+     * @param \Corncakes\MemberBundle\Entity\ChurchPerson $churchPersons
+     */
+    public function removeChurchPerson(\Corncakes\MemberBundle\Entity\ChurchPerson $churchPersons)
+    {
+        $this->churchPersons->removeElement($churchPersons);
+    }
+
+    /**
+     * Get churchPersons
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getChurchPersons()
+    {
+        return $this->churchPersons;
+    }
+
+    /**
+     * Add departmentPersons
+     *
+     * @param \Corncakes\MemberBundle\Entity\DepartmentPerson $departmentPersons
+     * @return Church
+     */
+    public function addDepartmentPerson(\Corncakes\MemberBundle\Entity\DepartmentPerson $departmentPersons)
+    {
+        $this->departmentPersons[] = $departmentPersons;
+
+        return $this;
+    }
+
+    /**
+     * Remove departmentPersons
+     *
+     * @param \Corncakes\MemberBundle\Entity\DepartmentPerson $departmentPersons
+     */
+    public function removeDepartmentPerson(\Corncakes\MemberBundle\Entity\DepartmentPerson $departmentPersons)
+    {
+        $this->departmentPersons->removeElement($departmentPersons);
+    }
+
+    /**
+     * Get departmentPersons
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getDepartmentPersons()
+    {
+        return $this->departmentPersons;
     }
 }

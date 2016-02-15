@@ -42,17 +42,17 @@ class Cell
     private $cellControls;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Person", mappedBy="cells")
+     * @ORM\OneToMany(targetEntity="CellPerson", mappedBy="cell")
      */
-    private $persons;
+    private $cellPersons;
 
     /**
      * Cell constructor.
      */
     public function __construct()
     {
-        $this->cellControls = new ArrayCollection();
-        $this->persons      = new ArrayCollection();
+        $this->cellControls     = new ArrayCollection();
+        $this->cellPersons      = new ArrayCollection();
     }
 
     /**
@@ -145,35 +145,35 @@ class Cell
     }
 
     /**
-     * Add persons
+     * Add cellPersons
      *
-     * @param \Corncakes\MemberBundle\Entity\Person $persons
+     * @param \Corncakes\MemberBundle\Entity\CellPerson $cellPersons
      * @return Cell
      */
-    public function addPerson(\Corncakes\MemberBundle\Entity\Person $persons)
+    public function addCellPerson(\Corncakes\MemberBundle\Entity\CellPerson $cellPersons)
     {
-        $this->persons[] = $persons;
+        $this->cellPersons[] = $cellPersons;
 
         return $this;
     }
 
     /**
-     * Remove persons
+     * Remove cellPersons
      *
-     * @param \Corncakes\MemberBundle\Entity\Person $persons
+     * @param \Corncakes\MemberBundle\Entity\CellPerson $cellPersons
      */
-    public function removePerson(\Corncakes\MemberBundle\Entity\Person $persons)
+    public function removeCellPerson(\Corncakes\MemberBundle\Entity\CellPerson $cellPersons)
     {
-        $this->persons->removeElement($persons);
+        $this->cellPersons->removeElement($cellPersons);
     }
 
     /**
-     * Get persons
+     * Get cellPersons
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getPersons()
+    public function getCellPersons()
     {
-        return $this->persons;
+        return $this->cellPersons;
     }
 }

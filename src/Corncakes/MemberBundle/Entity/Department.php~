@@ -2,6 +2,7 @@
 
 namespace Corncakes\MemberBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -28,6 +29,18 @@ class Department
      */
     private $name;
 
+    /**
+     * @ORM\OneToMany(targetEntity="DepartmentPerson", mappedBy="department")
+     */
+    private $departmentPersons;
+
+    /**
+     * Department constructor.
+     */
+    public function __construct()
+    {
+        $this->departmentPersons = new ArrayCollection();
+    }
 
     /**
      * Get id

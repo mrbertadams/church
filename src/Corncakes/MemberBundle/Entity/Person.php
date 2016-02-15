@@ -113,18 +113,29 @@ class Person
     private $assists;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Cell", inversedBy="persons")
-     * @ORM\JoinTable(name="persons_cells")
+     * @ORM\OneToMany(targetEntity="CellPerson", mappedBy="person")
      */
-    private $cells;
+    private $cellPersons;
+
+    /**
+     * @ORM\OneToMany(targetEntity="ChurchPerson", mappedBy="person")
+     */
+    private $churchPersons;
+
+    /**
+     * @ORM\OneToMany(targetEntity="DepartmentPerson", mappedBy="person")
+     */
+    private $departmentPersons;
 
     /**
      * Person constructor.
      */
     public function __construct()
     {
-        $this->assists  = new ArrayCollection();
-        $this->cells    = new ArrayCollection();
+        $this->assists              = new ArrayCollection();
+        $this->cellPersons          = new ArrayCollection();
+        $this->churchPersons        = new ArrayCollection();
+        $this->departmentPersons    = new ArrayCollection();
     }
 
     /**
@@ -470,35 +481,101 @@ class Person
     }
 
     /**
-     * Add cells
+     * Add cellPersons
      *
-     * @param \Corncakes\MemberBundle\Entity\Cell $cells
+     * @param \Corncakes\MemberBundle\Entity\CellPerson $cellPersons
      * @return Person
      */
-    public function addCell(\Corncakes\MemberBundle\Entity\Cell $cells)
+    public function addCellPerson(\Corncakes\MemberBundle\Entity\CellPerson $cellPersons)
     {
-        $this->cells[] = $cells;
+        $this->cellPersons[] = $cellPersons;
 
         return $this;
     }
 
     /**
-     * Remove cells
+     * Remove cellPersons
      *
-     * @param \Corncakes\MemberBundle\Entity\Cell $cells
+     * @param \Corncakes\MemberBundle\Entity\CellPerson $cellPersons
      */
-    public function removeCell(\Corncakes\MemberBundle\Entity\Cell $cells)
+    public function removeCellPerson(\Corncakes\MemberBundle\Entity\CellPerson $cellPersons)
     {
-        $this->cells->removeElement($cells);
+        $this->cellPersons->removeElement($cellPersons);
     }
 
     /**
-     * Get cells
+     * Get cellPersons
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getCells()
+    public function getCellPersons()
     {
-        return $this->cells;
+        return $this->cellPersons;
+    }
+
+    /**
+     * Add churchPersons
+     *
+     * @param \Corncakes\MemberBundle\Entity\ChurchPerson $churchPersons
+     * @return Person
+     */
+    public function addChurchPerson(\Corncakes\MemberBundle\Entity\ChurchPerson $churchPersons)
+    {
+        $this->churchPersons[] = $churchPersons;
+
+        return $this;
+    }
+
+    /**
+     * Remove churchPersons
+     *
+     * @param \Corncakes\MemberBundle\Entity\ChurchPerson $churchPersons
+     */
+    public function removeChurchPerson(\Corncakes\MemberBundle\Entity\ChurchPerson $churchPersons)
+    {
+        $this->churchPersons->removeElement($churchPersons);
+    }
+
+    /**
+     * Get churchPersons
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getChurchPersons()
+    {
+        return $this->churchPersons;
+    }
+
+    /**
+     * Add departmentPersons
+     *
+     * @param \Corncakes\MemberBundle\Entity\DepartmentPerson $departmentPersons
+     * @return Person
+     */
+    public function addDepartmentPerson(\Corncakes\MemberBundle\Entity\DepartmentPerson $departmentPersons)
+    {
+        $this->departmentPersons[] = $departmentPersons;
+
+        return $this;
+    }
+
+    /**
+     * Remove departmentPersons
+     *
+     * @param \Corncakes\MemberBundle\Entity\DepartmentPerson $departmentPersons
+     */
+    public function removeDepartmentPerson(\Corncakes\MemberBundle\Entity\DepartmentPerson $departmentPersons)
+    {
+        $this->departmentPersons->removeElement($departmentPersons);
+    }
+
+    /**
+     * Get departmentPersons
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getDepartmentPersons()
+    {
+        return $this->departmentPersons;
     }
 }

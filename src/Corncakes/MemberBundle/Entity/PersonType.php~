@@ -2,6 +2,7 @@
 
 namespace Corncakes\MemberBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -20,6 +21,31 @@ class PersonType
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
+    /**
+     * @ORM\OneToMany(targetEntity="cellPerson", mappedBy="personType")
+     */
+    private $cellPersons;
+
+    /**
+     * @ORM\OneToMany(targetEntity="ChurchPerson", mappedBy="personType")
+     */
+    private $churchPersons;
+
+    /**
+     * @ORM\OneToMany(targetEntity="DepartmentPerson", mappedBy="personType")
+     */
+    private $departmentPersons;
+
+    /**
+     * PersonType constructor.
+     */
+    public function __construct()
+    {
+        $this->cellPersons          = new ArrayCollection();
+        $this->churchPersons        = new ArrayCollection();
+        $this->departmentPersons    = new ArrayCollection();
+    }
 
     /**
      * @var string
@@ -60,5 +86,38 @@ class PersonType
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Add cellPersons
+     *
+     * @param \Corncakes\MemberBundle\Entity\cellPerson $cellPersons
+     * @return PersonType
+     */
+    public function addCellPerson(\Corncakes\MemberBundle\Entity\cellPerson $cellPersons)
+    {
+        $this->cellPersons[] = $cellPersons;
+
+        return $this;
+    }
+
+    /**
+     * Remove cellPersons
+     *
+     * @param \Corncakes\MemberBundle\Entity\cellPerson $cellPersons
+     */
+    public function removeCellPerson(\Corncakes\MemberBundle\Entity\cellPerson $cellPersons)
+    {
+        $this->cellPersons->removeElement($cellPersons);
+    }
+
+    /**
+     * Get cellPersons
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCellPersons()
+    {
+        return $this->cellPersons;
     }
 }
