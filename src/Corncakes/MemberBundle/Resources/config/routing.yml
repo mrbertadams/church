@@ -1,3 +1,7 @@
 corncakes_member_homepage:
     path:     /
     defaults: { _controller: CorncakesMemberBundle:Default:index }
+
+corncakes_member_church:
+    resource: "@CorncakesMemberBundle/Resources/config/routing/church.yml"
+    prefix:   /church
