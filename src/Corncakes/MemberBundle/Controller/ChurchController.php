@@ -9,8 +9,12 @@ class ChurchController extends Controller
 {
     public function indexAction()
     {
+        $em = $this->getDoctrine()->getManager();
+
+        $churches = $em->getRepository('CorncakesMemberBundle:Church')->findAll();
+
         return $this->render('CorncakesMemberBundle:Church:index.html.twig', array(
-            // ...
+           'churches' => $churches,
         ));
     }
 
@@ -18,9 +22,9 @@ class ChurchController extends Controller
     {
         $church = new Church();
 
-        $church->setName('El Recreo');
-        $church->setAddress('Barrio El Recreo');
-        $church->setPhone('6556734');
+        $church->setName('Bonanza');
+        $church->setAddress('Barrio Bonanza Turbaco');
+        //$church->setPhone('');
 
         $em = $this->getDoctrine()->getManager();
         $em->persist($church);

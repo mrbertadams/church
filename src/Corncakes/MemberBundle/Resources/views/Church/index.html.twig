@@ -3,5 +3,21 @@
 {% block title %}CorncakesMemberBundle:Church:index{% endblock %}
 
 {% block body %}
-<h1>Welcome to the Church:index page</h1>
+
+    <h1>Welcome to the index page</h1>
+    <table>
+        <tr>
+            <td>ID</td>
+            <td>Nombre</td>
+            <td>Dirección</td>
+        </tr>
+        {% for church in churches %}
+            <tr>
+                <td>{{ church.name }}</td>
+                <td>{{ church.name }}</td>
+                <td>{{ church.address }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
 {% endblock %}
