@@ -2,12 +2,51 @@
 <html>
     <head>
         <meta charset="UTF-8" />
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        {% block stylesheets %}
+            <!-- Compressed CSS Foundation -->
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/foundation/6.2.0/foundation.min.css">
+        {% endblock %}
+
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
+        {% block topbar %}
+            <div class="top-bar">
+                <div class="top-bar-left">
+                    <ul class="dropdown menu" data-dropdown-menu>
+                        <li class="menu-text">Project</li>
+                        <li>
+                            <a href="#">Churchs</a>
+                            <ul class="menu vertical">
+                                <li><a href="{{ path('church') }}">List</a></li>
+                                <li><a href="{{ path('church_new') }}">New</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="top-bar-right">
+                    <ul class="menu">
+                        <li><input type="search" placeholder="Search"></li>
+                        <li><button type="button" class="button">Search</button></li>
+                    </ul>
+                </div>
+            </div>
+        {% endblock %}
         {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        {% block javascripts %}
+            <!-- Compressed JavaScript JQuery -->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+            <!-- Compressed JavaScript Foundation -->
+            <script src="https://cdn.jsdelivr.net/foundation/6.2.0/foundation.min.js"></script>
+
+            <script>
+                $(document).foundation();
+            </script>
+        {% endblock %}
     </body>
 </html>

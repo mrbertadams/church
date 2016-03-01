@@ -3,5 +3,20 @@
 {% block title %}CorncakesMemberBundle:Church:new{% endblock %}
 
 {% block body %}
-<h1>Welcome to the Church:new page</h1>
+    <div class="row">
+        <div class="large-6 columns">
+            <div class="row">
+                <div class="large-12 columns">
+                    <br>
+                    <h3>Create church</h3>
+                    <hr>
+                </div>
+                <div class="large-12 columns">
+                    {{ form_start(form) }}
+                    {{ form_widget(form) }}
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

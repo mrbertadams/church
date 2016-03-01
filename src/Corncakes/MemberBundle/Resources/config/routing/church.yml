@@ -1,19 +1,20 @@
-index:
+church:
     path:     /
     defaults: { _controller: CorncakesMemberBundle:Church:index }
 
-create:
-    path:     /create
-    defaults: { _controller: CorncakesMemberBundle:Church:create }
-
-new:
-    path:     /new
-    defaults: { _controller: CorncakesMemberBundle:Church:new }
-
-show:
+church_show:
     path:     /show/{id}
     defaults: { _controller: CorncakesMemberBundle:Church:show }
 
-edit:
+church_new:
+    path:     /new
+    defaults: { _controller: CorncakesMemberBundle:Church:new }
+
+church_create:
+    path:     /create
+    defaults: { _controller: CorncakesMemberBundle:Church:create }
+    methods:  POST
+
+church_edit:
     path:     /edit/{id}
     defaults: { _controller: CorncakesMemberBundle:Church:edit }
