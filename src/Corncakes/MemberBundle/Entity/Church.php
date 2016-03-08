@@ -4,6 +4,7 @@ namespace Corncakes\MemberBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Church
@@ -26,6 +27,8 @@ class Church
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=45, unique=true)
+     *
+     * @Assert\NotBlank()
      */
     private $name;
 
@@ -33,6 +36,8 @@ class Church
      * @var string
      *
      * @ORM\Column(name="address", type="string", length=255)
+     *
+     * @Assert\NotBlank()
      */
     private $address;
 

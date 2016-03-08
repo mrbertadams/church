@@ -7,36 +7,49 @@
     <div class="row">
         <div class="large-12 columns">
             <br>
-            <h3>Welcome to the index page</h3>
+            <h3>{{ 'List churches'|trans }}</h3>
             <hr>
         </div>
         <div class="large-12 columns">
-            <table>
-                <thead>
-                    <tr>
-                        <td>ID</td>
-                        <td>Nombre</td>
-                        <td>Dirección</td>
-                        <td>Actions</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for church in churches %}
-                        <tr>
-                            <td>{{ church.name }}</td>
-                            <td>{{ church.name }}</td>
-                            <td>{{ church.address }}</td>
-                            <td>
-                                <div class="button-group">
-                                    <a class="success button">View</a>
-                                    <a class="warning button">Edit</a>
-                                    <a class="alert button">Delete</a>
-                                </div>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+            <div class="row">
+                <div class="large-12 columns">
+                    <h4>Total iglesias: {{ pagination.getTotalItemCount }}</h4>
+                </div>
+                <div class="large-12 columns">
+                    <table class="hover">
+                        <thead>
+                            <tr>
+                                <th width="20">{{ knp_pagination_sortable(pagination, 'Id', 'c.id') }}</th>
+                                <th width="300">{{ knp_pagination_sortable(pagination, 'Name'|trans, 'c.name') }}</th>
+                                <th width="300">{{ knp_pagination_sortable(pagination, 'Address'|trans, 'c.address') }}</th>
+                                <th width="100">{{ 'Actions'|trans }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for church in pagination %}
+                                <tr>
+                                    <td>{{ church.id }}</td>
+                                    <td>{{ church.name }}</td>
+                                    <td>{{ church.address }}</td>
+                                    <td>
+                                        <div class="tiny button-group">
+                                            <a class="secondary button">{{ 'View'|trans }}</a>
+                                            <a class="button">{{ 'Edit'|trans }}</a>
+                                            <a class="alert button">{{ 'Delete'|trans }}</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="large-12 columns">
+                    <hr>
+                    <div class="navigation text-center">
+                        {{ knp_pagination_render(pagination) }}
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 

@@ -20,7 +20,7 @@ class ChurchType extends AbstractType
             ->add('address')
             ->add('phone')
             ->add('save', SubmitType::class, array(
-                'label' => 'Guardar',
+                'label' => 'Save',
                 'attr' => array('class' => 'button'),
             ));
         ;

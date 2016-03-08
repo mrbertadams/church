@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="1">
+                <source>Create church</source>
+                <target>Crear iglesia</target>
+            </trans-unit>
+            <trans-unit id="2">
+                <source>Name</source>
+                <target>Nombre</target>
+            </trans-unit>
+            <trans-unit id="3">
+                <source>Address</source>
+                <target>Dirección</target>
+            </trans-unit>
+            <trans-unit id="4">
+                <source>Phone</source>
+                <target>Teléfono</target>
+            </trans-unit>
+            <trans-unit id="5">
+                <source>Save</source>
+                <target>Guardar</target>
+            </trans-unit>
+            <trans-unit id="6">
+                <source>Churchs</source>
+                <target>Iglesias</target>
+            </trans-unit>
+            <trans-unit id="7">
+                <source>List</source>
+                <target>Listar</target>
+            </trans-unit>
+            <trans-unit id="8">
+                <source>New</source>
+                <target>Nuevo</target>
+            </trans-unit>
+            <trans-unit id="9">
+                <source>Enter the name of the church</source>
+                <target>Digite el nombre de la iglesia</target>
+            </trans-unit>
+            <trans-unit id="10">
+                <source>Enter the address of the church</source>
+                <target>Digite la dirección de la iglesia</target>
+            </trans-unit>
+            <trans-unit id="11">
+                <source>Enter the phone of the church</source>
+                <target>Digite el teléfono de la iglesia</target>
+            </trans-unit>
+            <trans-unit id="12">
+                <source>Actions</source>
+                <target>Acciones</target>
+            </trans-unit>
+            <trans-unit id="13">
+                <source>View</source>
+                <target>Ver</target>
+            </trans-unit>
+            <trans-unit id="14">
+                <source>Edit</source>
+                <target>Editar</target>
+            </trans-unit>
+            <trans-unit id="15">
+                <source>Delete</source>
+                <target>Borrar</target>
+            </trans-unit>
+            <trans-unit id="16">
+                <source>List churches</source>
+                <target>Lista de iglesias</target>
+            </trans-unit>
+            <trans-unit id="17">
+                <source>Previous</source>
+                <target>Anterior</target>
+            </trans-unit>
+            <trans-unit id="18">
+                <source>Next</source>
+                <target>Siguiente</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

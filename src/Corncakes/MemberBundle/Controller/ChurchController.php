@@ -9,15 +9,46 @@ use Symfony\Component\HttpFoundation\Request;
 
 class ChurchController extends Controller
 {
-    public function indexAction()
+
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $churches = $em->getRepository('CorncakesMemberBundle:Church')->findAll();
+//        $churches = $em->getRepository('CorncakesMemberBundle:Church')->findAll();
+
+        $dql = 'SELECT c FROM CorncakesMemberBundle:Church c';
+        $query = $em->createQuery($dql);
+
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $query,
+            $request->query->getInt('page', 1),
+            4
+        );
 
         return $this->render('CorncakesMemberBundle:Church:index.html.twig', array(
-           'churches' => $churches,
+           'pagination' => $pagination,
         ));
+    }
+
+    public function newAction()
+    {
+        $entity = new Church();
+        $form = $this->createCreateForm($entity);
+
+        return $this->render('CorncakesMemberBundle:Church:new.html.twig', array(
+            'form'   => $form->createView(),
+        ));
+    }
+
+    private function createCreateForm(Church $entity)
+    {
+        $form = $this->createForm(ChurchType::class, $entity, array(
+            'action' => $this->generateUrl('church_create'),
+            'method' => 'POST',
+        ));
+
+        return $form;
     }
 
     public function createAction(Request $request)
@@ -37,33 +68,9 @@ class ChurchController extends Controller
             return $this->redirect($this->generateUrl('church'));
         }
 
-        //$church->setName('Bonanza');
-        //$church->setAddress('Barrio Bonanza Turbaco');
-        //$church->setPhone('');
-
-        return $this->render('CorncakesMemberBundle:Church:new.html.twig', array(
-            // ...
-        ));
-    }
-
-    public function newAction()
-    {
-        $entity = new Church();
-        $form = $this->createCreateForm($entity);
-
         return $this->render('CorncakesMemberBundle:Church:new.html.twig', array(
             'form'   => $form->createView(),
         ));
-    }
-
-    public function createCreateForm(Church $entity)
-    {
-        $form = $this->createForm(ChurchType::class, $entity, array(
-            'action' => $this->generateUrl('church_create'),
-            'method' => 'POST',
-        ));
-
-        return $form;
     }
 
     public function showAction($id)
