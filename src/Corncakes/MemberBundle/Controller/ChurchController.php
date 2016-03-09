@@ -23,7 +23,7 @@ class ChurchController extends Controller
         $pagination = $paginator->paginate(
             $query,
             $request->query->getInt('page', 1),
-            4
+            10
         );
 
         return $this->render('CorncakesMemberBundle:Church:index.html.twig', array(
@@ -73,17 +73,56 @@ class ChurchController extends Controller
         ));
     }
 
-    public function showAction($id)
+    public function editAction($id)
     {
-        return $this->render('CorncakesMemberBundle:Church:show.html.twig', array(
-            // ...
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('CorncakesMemberBundle:Church')->find($id);
+
+        if(!$entity) {
+            $messageException = $this->get('translator')->trans('Unable to find Church.');
+            throw $this->createNotFoundException($messageException);
+        }
+
+        $form = $this->createEditForm($entity);
+
+        return $this->render('CorncakesMemberBundle:Church:edit.html.twig', array(
+            'entity' => $entity,
+            'form' => $form->createView(),
         ));
     }
 
-    public function editAction($id)
+    private function createEditForm(Church $entity)
     {
+        $form = $this->createForm(ChurchType::class, $entity, array(
+            'action' => $this->generateUrl('church_update', array('id' => $entity->getId())),
+            'method' => 'PUT',
+        ));
+
+        return $form;
+    }
+
+    public function updateAction($id, Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('CorncakesMemberBundle:Church')->find($id);
+
+        if(!$entity) {
+            $messageException = $this->get('translator')->trans('Unable to find Church.');
+            throw $this->createNotFoundException($messageException);
+        }
+
+        $form = $this->createEditForm($entity);
+        $form->handleRequest($request);
+
+        if($form->isValid()) {
+            $em->flush();
+            return $this->redirect($this->generateUrl('church_edit', array('id' => $id)));
+        }
+
         return $this->render('CorncakesMemberBundle:Church:edit.html.twig', array(
-            // ...
+            'entity' => $entity,
+            'form' => $form->createView(),
         ));
     }
 

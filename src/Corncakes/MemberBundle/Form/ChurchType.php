@@ -19,13 +19,10 @@ class ChurchType extends AbstractType
             ->add('name')
             ->add('address')
             ->add('phone')
-            ->add('save', SubmitType::class, array(
-                'label' => 'Save',
-                'attr' => array('class' => 'button'),
-            ));
+            ->add('save', SubmitType::class)
         ;
     }
-    
+
     /**
      * @param OptionsResolver $resolver
      */

@@ -13,29 +13,26 @@
         <div class="large-12 columns">
             <div class="row">
                 <div class="large-12 columns">
-                    <h4>Total iglesias: {{ pagination.getTotalItemCount }}</h4>
-                </div>
-                <div class="large-12 columns">
                     <table class="hover">
                         <thead>
                             <tr>
-                                <th width="20">{{ knp_pagination_sortable(pagination, 'Id', 'c.id') }}</th>
-                                <th width="300">{{ knp_pagination_sortable(pagination, 'Name'|trans, 'c.name') }}</th>
-                                <th width="300">{{ knp_pagination_sortable(pagination, 'Address'|trans, 'c.address') }}</th>
+                                <th width="200">{{ knp_pagination_sortable(pagination, 'Name'|trans, 'c.name') }}</th>
+                                <th width="400">{{ knp_pagination_sortable(pagination, 'Address'|trans, 'c.address') }}</th>
+                                <th width="50">{{ knp_pagination_sortable(pagination, 'Phone'|trans, 'c.phone') }}</th>
                                 <th width="100">{{ 'Actions'|trans }}</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for church in pagination %}
                                 <tr>
-                                    <td>{{ church.id }}</td>
                                     <td>{{ church.name }}</td>
                                     <td>{{ church.address }}</td>
+                                    <td>{{ church.phone }}</td>
                                     <td>
                                         <div class="tiny button-group">
-                                            <a class="secondary button">{{ 'View'|trans }}</a>
-                                            <a class="button">{{ 'Edit'|trans }}</a>
-                                            <a class="alert button">{{ 'Delete'|trans }}</a>
+                                            <a href="#" class="secondary button">{{ 'View'|trans }}</a>
+                                            <a href="{{ path('church_edit', {id : church.id}) }}" class="button">{{ 'Edit'|trans }}</a>
+                                            <a href="#" class="alert button">{{ 'Delete'|trans }}</a>
                                         </div>
                                     </td>
                                 </tr>

@@ -1,7 +1,66 @@
 {% extends "::base.html.twig" %}
 
-{% block title %}CorncakesMemberBundle:Church:edit{% endblock %}
+{% block title %}CorncakesMemberBundle:Church:new{% endblock %}
 
 {% block body %}
-<h1>Welcome to the Church:edit page</h1>
+    <div class="row">
+        <div class="large-6 columns">
+            <div class="row">
+                <div class="large-12 columns">
+                    <br>
+                    <h3>{% trans %}Edit church{% endtrans %}</h3>
+                    <hr>
+                </div>
+                <div class="large-12 columns">
+                    {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+
+                    <div class="row">
+                        <div class="small-12 columns">
+                            {{ form_errors(form) }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="small-12 columns">
+                            {{ form_label(form.name) }}
+                            {{ form_widget(form.name, {'attr' : { 'placeholder' : 'Enter the name of the church' }}) }}
+                        </div>
+                        <div class="small-12 columns">
+                            <span>
+                                {{  form_errors(form.name) }}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="small-12 columns">
+                            {{ form_label(form.address) }}
+                            {{ form_widget(form.address, {'attr' : { 'placeholder' : 'Enter the address of the church' }}) }}
+                        </div>
+                        <div class="small-12 columns">
+                            <span>
+                                {{  form_errors(form.address) }}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="small-12 columns">
+                            {{ form_label(form.phone) }}
+                            {{ form_widget(form.phone, {'attr' : { 'placeholder' : 'Enter the phone of the church' }}) }}
+                        </div>
+                        <div class="small-12 columns">
+                            <span>
+                                {{  form_errors(form.phone) }}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="small-12 columns">
+                            {{ form_widget(form.save, {'attr' : {'class' : 'button'}}) }}
+                        </div>
+                    </div>
+
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

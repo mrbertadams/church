@@ -16,6 +16,11 @@
 
                     <div class="row">
                         <div class="small-12 columns">
+                            {{ form_errors(form) }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="small-12 columns">
                             {{ form_label(form.name) }}
                             {{ form_widget(form.name, {'attr' : { 'placeholder' : 'Enter the name of the church' }}) }}
                         </div>
@@ -45,6 +50,11 @@
                             <span>
                                 {{  form_errors(form.phone) }}
                             </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="small-12 columns">
+                            {{ form_widget(form.save, {'attr' : {'class' : 'button'}}) }}
                         </div>
                     </div>
 
