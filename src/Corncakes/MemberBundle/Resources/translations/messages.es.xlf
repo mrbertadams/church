@@ -82,6 +82,10 @@
                 <source>Edit church</source>
                 <target>Editar iglesia</target>
             </trans-unit>
+            <trans-unit id="21">
+                <source>Unable to find Church.</source>
+                <target>No se ha encontrado la iglesia</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
